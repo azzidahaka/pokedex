@@ -45,6 +45,27 @@ let pokemonRepository = (function () {
 
     };
 
+    /**
+     *Function takes in a pokemon
+     *fetches the url, once promise has been resolved, it converts the response into json and creates new objects to take in the additional information
+     */
+    function loadDetails(pokemon){
+        showLoadingMessage();
+        let url = pokemon.detailsUrl;
+        return fetch(url).then(function (response){
+            return response.json();
+        }).then(function(details){
+            pokemon.imageUrl = details.sprites.front_default;
+            pokemon.height = details.height;
+            pokemon.types = details.types;
+            hideLoadingMessage();
+        })
+        .catch(function(e){
+            console.error(e);
+            hideLoadingMessage();
+        });
+    }
+
     //print out pokemon.name to console
     function showDetails(pokemon) {
         console.log(pokemon);
