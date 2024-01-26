@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+ body{
+    display: grid;
+ }
+
+
+input,
+texture,
+select,
+button {
+    font-family: system-ui;
+}
+
+
+.pokemon-list{
+    display: grid;
+    list-style: none;
+    padding: 0%;
+    grid-gap: 9%;
+}
+.pokemon{
+    border: 0;
+    width: 100%;
+    text-align: left;
+    padding: 2%;
+
+
+}

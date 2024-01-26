@@ -61,32 +61,15 @@ let pokemonRepository = (function () {
     };
 
     return {
-        getAll, add,
+        getAll, add, addListItem
     };
 })();
 
 /*
 Call getAll function for pokemonRespository
-Loops through the list of pokemons and prints out their name height and types
+Loops through the list of pokemons and calls the addlistitemm function which adds the buttons to the html
 */
 pokemonRepository.getAll().forEach(pokemon => {
-    document.write('<p>' + 'The ' + pokemon.name + ' is ' + pokemon.height + 'm tall and is of type ');
-    /*If statement checks if the pokemon.type array  is more than 1 and prints each type
-      tempType takes in the pokemon.type values and concatinates them into a string while adding ',' and whitespace to make print out cleaner
-    */
-    if (pokemon.types.length > 1) {
-        let tempType = "";
-        pokemon.types.forEach(type => {
-            tempType += '' + type + ', ';
-        });
-        document.write(tempType.slice(0, -2) + '.');//removes the last 2 value which would be ','  and white space
-    }
-    else {
-        document.write(pokemon.types + '.')
-    }
-
-    //react if its a big pokemon
-    if (pokemon.height > 0.6) {
-        document.write('-- Wow, that\’s big!');
-    }
+    pokemonRepository.addListItem(pokemon);
 });
+
