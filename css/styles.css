@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -18,7 +19,7 @@ button {
     display: grid;
     list-style: none;
     padding: 0%;
-    grid-gap: 9%;
+    grid-gap: 0.2%;
 }
 .pokemon{
     border: 0;
