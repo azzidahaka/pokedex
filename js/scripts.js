@@ -47,8 +47,21 @@ let pokemonRepository = (function () {
         pokemonListener(button,pokemon);
 
     };
+
+    //print out pokemon.name to console
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    };
+
+    //function that prints out pokemon.name to console on button click
+    function pokemonListener(button, pokemon){
+        button.addEventListener('click', function(){
+            showDetails(pokemon.name)
+        });
+    };
+
     return {
-        getAll, add, 
+        getAll, add,
     };
 })();
 
