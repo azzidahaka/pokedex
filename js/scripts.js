@@ -1,11 +1,8 @@
 //IIFE to avoide accessing global state, pokemonRespository will hold IIFE return
 let pokemonRepository = (function () {
-    //Created and populated pokemonList
-    let pokemonList = [
-        { name: "Bulbasaur", height: 0.7, types: ["grass", "poison", "gas"] },
-        { name: "Charmander", height: 0.6, types: ["fire"] },
-        { name: "Squirtle", height: 0.5, types: ["water"] }
-    ];
+
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';//holds link to api
 
     //function returns list of pokemon object
     function getAll() {
@@ -15,10 +12,10 @@ let pokemonRepository = (function () {
     //function validates the pokemon being added before it is added to pokemonList
     function add(pokemon) {
         //checks if pokemon is valid, then adds to array if true
-        if (typeof pokemon === "object" &&
+         if (typeof pokemon === "object" &&
             "name" in pokemon &&
-            "height" in pokemon &&
-            "types" in pokemon) {
+            "detailsUrl" in pokemon
+            ) {
             pokemonList.push(pokemon);
         }
         else {
