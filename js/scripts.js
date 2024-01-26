@@ -1,4 +1,4 @@
-//IIFE to avoide accessing global state
+//IIFE tom avoide accessing global state
 let pokemonRepository = (function () {
     //Created and populated pokemonList
     let pokemonList = [
@@ -7,6 +7,28 @@ let pokemonRepository = (function () {
         { name: "Squirtle", height: 0.5, types: ["water"] }
     ];
 
+    //function returns list of pokemon object
+    function getAll(){
+        return pokemonList;
+    };
+
+    //function adds pokemon passed in parameters to list of pokemon
+    function add(pokemon){
+        pokemonList.push(pokemon);
+    };
+    //function validates the pokemon being added before it is added to
+    function addV(pokemon){
+        if( typeof pokemon === "object" &&
+        "name" in pokemon &&
+        "height" in pokemon &&
+        "types" in pokemon){
+            pokemonList.push(pokemon);
+        }
+        else{
+            alert("information provided is not valid");
+        }
+
+    };
     return{
         getAll, add, addV
     };
