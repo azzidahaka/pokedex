@@ -92,14 +92,14 @@ let pokemonRepository = (function () {
         });
     }
 
-    //print out pokemon.name to console
+    //print out pokemon to console
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function (){
             console.log(pokemon);
         });
     };
 
-    //function that prints out pokemon.name to console on button click
+    //function that prints out pokemonto console on button click
     function pokemonListener(button, pokemon){
         button.addEventListener('click', function(){
             showDetails(pokemon)
