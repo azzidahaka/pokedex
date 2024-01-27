@@ -92,10 +92,39 @@ let pokemonRepository = (function () {
         });
     }
 
-    //print out pokemon to console
+    /**
+     *
+     * Function takes in pokemon object.
+     * Add pokemon.name, height and image to modal.
+     */
     function showDetails(pokemon) {
-        loadDetails(pokemon).then(function (){
-            console.log(pokemon);
+        let modalContainer = document.querySelector('#modal-container');
+        loadDetails(pokemon).then(function () {
+            modalContainer.innerHTML = "";
+            //sets class to is visible, which already has settings in css
+            modalContainer.classList.add('is-visible');
+            let modal = document.createElement('div');
+            modal.classList.add('modal');
+
+            let closeButtonElement = document.createElement('button');
+            closeButtonElement.classList.add('modal-close');
+            closeButtonElement.innerText = 'X';
+            closeButtonElement.addEventListener('click', hideModal);
+
+            let pokemonName = document.createElement('h1');
+            pokemonName.innerText = pokemon.name;
+            let pokemonHeight = document.createElement('p');
+            pokemonHeight.innerText = "height: " + pokemon.height;
+            let pokemonImage = document.createElement('img');
+            pokemonImage.src = pokemon.imageUrl;
+            //add all the created elements to the modal container divv
+            modal.appendChild(closeButtonElement);
+            modal.appendChild(pokemonName);
+            modal.appendChild(pokemonHeight);
+            modal.appendChild(pokemonImage);
+            modalContainer.appendChild(modal);
+
+
         });
     };
 
