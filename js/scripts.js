@@ -106,7 +106,7 @@ let pokemonRepository = (function () {
         });
     };
 
-
+    //print out loading while waiting for a responce
     function showLoadingMessage(){
         console.log("Loading");
         let loading = document.createElement('h2');
@@ -115,6 +115,7 @@ let pokemonRepository = (function () {
         body.appendChild(loading);
     }
 
+    //hide loading message once promise has been resolved or rejeccted
     function hideLoadingMessage(){
         let loading = document.querySelector('h2');
         loading.remove();
