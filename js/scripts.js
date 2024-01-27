@@ -128,7 +128,14 @@ let pokemonRepository = (function () {
         });
     };
 
-    //function that prints out pokemonto console on button click
+    //removes is-visible class from modal to make it hiden
+    function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+
+    }
+
+    //function that prints out pokemon  to console on button click
     function pokemonListener(button, pokemon){
         button.addEventListener('click', function(){
             showDetails(pokemon)
