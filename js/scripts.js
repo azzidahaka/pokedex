@@ -112,14 +112,14 @@ let pokemonRepository = (function () {
       let modalHeader = $('<div></div>').addClass('modal-header row ');
       let modalBody = $('<div></div>').addClass('modal-body row');
       let closeButtonElement = $('<button></button>').
-      addClass('close').
-      attr('data-dismiss', 'modal').
-      attr('aria-label', 'Close');
+        addClass('close').
+        attr('data-dismiss', 'modal').
+        attr('aria-label', 'Close');
       closeButtonElement.text('X');
       let pokemonName = $(`<h2>${pokemon.name}</h2>`).addClass('col-lg-8 col text-lg-right');
       let pokemonHeight = $(`<p class="col-12 text-center">Height: ${pokemon.height}</p>`);
       let pokemonImage = $('<img class="col text-center">').attr('src', pokemon.imageUrl).attr('alt', pokemon.name);
-      //add all the created elements to the modal 
+      //add all the created elements to the modal
       modalHeader.append(pokemonName);
       modalHeader.append(closeButtonElement);
       modalBody.append(pokemonHeight);
@@ -139,9 +139,9 @@ let pokemonRepository = (function () {
 
   }
 
-  //function that prints out pokemon  to console on button click
+  //function that calls show details on button click
   function pokemonListener(button, pokemon) {
-    button.addEventListener('click', function () {
+    button.on('click', function () {
       showDetails(pokemon)
     });
   };
@@ -161,22 +161,7 @@ let pokemonRepository = (function () {
     loading.remove();
   }
 
-  //Listener for browser window to close modalContainer when 'esc ' key is pressed
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
 
-  //Listner for when the modal container (grey area) is clicked to close modal
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal container,
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
 
   return {
     getAll, add, addListItem, loadList, loadDetails, showDetails
