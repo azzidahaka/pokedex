@@ -1,7 +1,10 @@
 * {
   box-sizing: border-box;
 }
-body {
+h1 {
+  text-align: center;
+  margin-top: 10%;
+  
 }
 .list-group{
   display: grid;
@@ -14,7 +17,7 @@ body {
 .list-group-item {
   border: 0;
   justify-items: center;
- width: 700px;
+  width: 700px;
 }
 
 .btn{
