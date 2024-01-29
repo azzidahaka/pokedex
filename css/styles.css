@@ -1,11 +1,13 @@
 * {
   box-sizing: border-box;
 }
+
 h1 {
   text-align: center;
 
 }
-.list-group{
+
+.list-group {
   display: grid;
 
   list-style: none;
@@ -19,12 +21,10 @@ h1 {
   width: 700px;
 }
 
-.btn{
+.btn {
   border: 0;
   width: 100%;
   text-align: center;
   padding: 2%;
   background: #943131;
 }
-
-
