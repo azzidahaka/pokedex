@@ -116,7 +116,7 @@ let pokemonRepository = (function () {
   }
   /**
    *Function takes in a pokemon
-   *fetches the url, once promise has been resolved, it converts the response into json and creates new objects to take in the additional information
+   *fetches the url, once promise has been resolved, then it converts the response into json and creates new objects to take in the additional information
    */
   function loadDetails(pokemon) {
     showLoadingMessage();
