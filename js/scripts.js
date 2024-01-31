@@ -19,7 +19,7 @@ let pokemonRepository = (function () {
       attr('data-dismiss', 'modal').
       attr('aria-label', 'Close');
     closeButtonElement.text('X');
-    let pokemonName = $(`<h2></h2>`).addClass('col-md-8 col text-md-right bg-dark text-white');
+    let pokemonName = $(`<h2></h2>`).addClass('bg-dark text-white');
     let pokemonHeight = $(`<p class="col-12 text-center">Height: </p>`);
     let pokemonImage = $('<img class="col text-center">');
     modalHeader.append(pokemonName);
