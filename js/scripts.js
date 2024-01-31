@@ -30,7 +30,6 @@ let pokemonRepository = (function () {
     modalContent.append(modalBody);
     modalDialog.append(modalContent);
     modalContainer.append(modalDialog);
-
   })();
   //function to search for pokemon
   (function searchPokemon() {
@@ -47,7 +46,6 @@ let pokemonRepository = (function () {
       alert('Please enter a valid pokemon name');
     });
   })();
-
   function getAll() {
     return pokemonList;
   };
@@ -134,7 +132,6 @@ let pokemonRepository = (function () {
         hideLoadingMessage();
       });
   }
-
   /**
    * Fucntion populates the modal with pokemon details
    */
