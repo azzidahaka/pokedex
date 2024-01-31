@@ -2,7 +2,52 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';//holds link to api
-  //function returns list of pokemon object
+
+  (function createModal() {
+    let modalContainer = $('#modalContainer');
+    let modalDialog = $('<div></div>').
+      addClass('modal-dialog').
+      attr('role', 'document');
+    let modalContent = $('<div></div>').addClass('modal-content container');
+    let modalHeader = $('<div></div>').addClass('modal-header row ');
+    let modalBody = $('<div></div>').addClass('modal-body row');
+    let closeButtonElement = $('<button></button>').
+      addClass('close').
+      attr('data-dismiss', 'modal').
+      attr('aria-label', 'Close');
+    closeButtonElement.text('X');
+    let pokemonName = $(`<h2></h2>`).addClass('col-md-8 col text-md-right');
+    let pokemonHeight = $(`<p class="col-12 text-center">Height: </p>`);
+    let pokemonImage = $('<img class="col text-center">');
+    modalHeader.append(pokemonName);
+    modalHeader.append(closeButtonElement);
+    modalBody.append(pokemonHeight);
+    modalBody.append(pokemonImage);
+    modalContent.append(modalHeader);
+    modalContent.append(modalBody);
+    modalDialog.append(modalContent);
+    modalContainer.append(modalDialog);
+  })();
+  ( function searchPokemon() {
+    $('#sub').on('click', function(event)
+    {
+
+      let pokemonName = $('input').val().toLowerCase();
+      console.log(pokemonName);
+      event.preventDefault();
+
+      for (let item of pokemonList) {
+        if(pokemonName === item.name.toLowerCase()) {
+          $('#modalContainer').modal('show');
+          showDetails(item);
+          return;
+        }
+      }
+      alert('Pokemon not found');
+
+    });
+  })();
+
   function getAll() {
     return pokemonList;
   };
@@ -39,6 +84,7 @@ let pokemonRepository = (function () {
     listItem.append(button);
     pokemonUl.append(listItem);
     pokemonListener(button, pokemon);
+
   };
   /**
    *Function gets the pokemon information from the api
@@ -60,6 +106,7 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
+        loadDetails(pokemon);
       });
       hideLoadingMessage();
     }).catch(function (e) {
@@ -87,44 +134,26 @@ let pokemonRepository = (function () {
         hideLoadingMessage();
       });
   }
+
   /**
    * Fucntion Creates a modal to display pokemon details
    */
-  function showModal(pokemon) {
-    let modalContainer = $('#modalContainer');
-    modalContainer.html('');//empties the modal container
-    let modalDialog = $('<div></div>').addClass('modal-dialog').attr('role', 'document');
-    let modalContent = $('<div></div>').addClass('modal-content container');
-    modalDialog.append(modalContent);
-    modalContainer.append(modalDialog);
-    modalContainer.attr('aria-labelledby', pokemon.name);
-    let modalHeader = $('<div></div>').addClass('modal-header row ');
-    let modalBody = $('<div></div>').addClass('modal-body row');
-    let closeButtonElement = $('<button></button>').
-      addClass('close').
-      attr('data-dismiss', 'modal').
-      attr('aria-label', 'Close');
-    closeButtonElement.text('X');
-    let pokemonName = $(`<h2>${pokemon.name}</h2>`).addClass('col-lg-8 col text-lg-right');
-    let pokemonHeight = $(`<p class="col-12 text-center">Height: ${pokemon.height}</p>`);
-    let pokemonImage = $('<img class="col text-center">').attr('src', pokemon.imageUrl).attr('alt', pokemon.name);
-    //add all the created elements to the modal
-    modalHeader.append(pokemonName);
-    modalHeader.append(closeButtonElement);
-    modalBody.append(pokemonHeight);
-    modalBody.append(pokemonImage);
-    modalContent.append(modalHeader);
-    modalContent.append(modalBody);
+  function showDetails(pokemon) {
+      $('#modalContainer').attr('aria-labelledby', pokemon.name);
+      $('.modal-header > h2').text(pokemon.name);
+      $('.modal-body > p').text('Height: ' + pokemon.height);
+      $('.modal-body > img').attr('src', pokemon.imageUrl);
+      //add all the created elements to the modal
   }
+
+
+
+
   /**
    * Function takes in pokemon object.
    * Add pokemon.name, height and image to modal.
    */
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon);
-    });
-  };
+
   //function that calls show details on button click
   function pokemonListener(button, pokemon) {
     button.on('click', function () {
@@ -141,7 +170,7 @@ let pokemonRepository = (function () {
   }
   //hide loading message once promise has been resolved or rejeccted
   function hideLoadingMessage() {
-    let loading = document.querySelector('h2');
+    let loading = document.querySelector('body > h2');
     loading.remove();
   }
   return {

@@ -9,7 +9,6 @@ h1 {
 
 .list-group {
   display: grid;
-
   list-style: none;
   padding: 0%;
   justify-items: center;
@@ -18,7 +17,8 @@ h1 {
 .list-group-item {
   border: 0;
   justify-items: center;
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
 }
 
 .btn {
