@@ -3,20 +3,23 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';//holds link to api
 
+  /**
+   * Function creates a modal that will display pokemon details
+   */
   (function createModal() {
     let modalContainer = $('#modalContainer');
     let modalDialog = $('<div></div>').
       addClass('modal-dialog').
       attr('role', 'document');
     let modalContent = $('<div></div>').addClass('modal-content container');
-    let modalHeader = $('<div></div>').addClass('modal-header row ');
+    let modalHeader = $('<div></div>').addClass('modal-header row bg-dark ');
     let modalBody = $('<div></div>').addClass('modal-body row');
     let closeButtonElement = $('<button></button>').
-      addClass('close').
+      addClass('close text-white').
       attr('data-dismiss', 'modal').
       attr('aria-label', 'Close');
     closeButtonElement.text('X');
-    let pokemonName = $(`<h2></h2>`).addClass('col-md-8 col text-md-right');
+    let pokemonName = $(`<h2></h2>`).addClass('col-md-8 col text-md-right bg-dark text-white');
     let pokemonHeight = $(`<p class="col-12 text-center">Height: </p>`);
     let pokemonImage = $('<img class="col text-center">');
     modalHeader.append(pokemonName);
@@ -27,24 +30,21 @@ let pokemonRepository = (function () {
     modalContent.append(modalBody);
     modalDialog.append(modalContent);
     modalContainer.append(modalDialog);
+
   })();
-  ( function searchPokemon() {
-    $('#sub').on('click', function(event)
-    {
-
+  //function to search for pokemon
+  (function searchPokemon() {
+    $('#sub').on('click', function (event) {
       let pokemonName = $('input').val().toLowerCase();
-      console.log(pokemonName);
       event.preventDefault();
-
       for (let item of pokemonList) {
-        if(pokemonName === item.name.toLowerCase()) {
+        if (pokemonName === item.name.toLowerCase()) {
           $('#modalContainer').modal('show');
           showDetails(item);
           return;
         }
       }
-      alert('Pokemon not found');
-
+      alert('Please enter a valid pokemon name');
     });
   })();
 
@@ -136,24 +136,14 @@ let pokemonRepository = (function () {
   }
 
   /**
-   * Fucntion Creates a modal to display pokemon details
+   * Fucntion populates the modal with pokemon details
    */
   function showDetails(pokemon) {
-      $('#modalContainer').attr('aria-labelledby', pokemon.name);
-      $('.modal-header > h2').text(pokemon.name);
-      $('.modal-body > p').text('Height: ' + pokemon.height);
-      $('.modal-body > img').attr('src', pokemon.imageUrl);
-      //add all the created elements to the modal
+    $('#modalContainer').attr('aria-labelledby', pokemon.name);
+    $('.modal-header > h2').text(pokemon.name);
+    $('.modal-body > p').text('Height: ' + pokemon.height);
+    $('.modal-body > img').attr('src', pokemon.imageUrl);
   }
-
-
-
-
-  /**
-   * Function takes in pokemon object.
-   * Add pokemon.name, height and image to modal.
-   */
-
   //function that calls show details on button click
   function pokemonListener(button, pokemon) {
     button.on('click', function () {

@@ -7,11 +7,31 @@ h1 {
 
 }
 
+body {
+
+  background: #ddcbcb;
+
+}
+span{
+  background-color: #ddcbcb;
+  border-radius: 5%;
+  padding: 0 12px;
+  text-align: center;
+}
+
+#sub{
+  color: black;
+  background-color: #ddcbcb;
+  border: 0;
+  margin-right: 30px;
+}
 .list-group {
   display: grid;
   list-style: none;
-  padding: 0%;
+  margin: 0% 30%;
   justify-items: center;
+   border:5px solid #383c44;
+   border-top: 0px;
 }
 
 .list-group-item {
@@ -19,6 +39,7 @@ h1 {
   justify-items: center;
   width: 100%;
   max-width: 700px;
+  background-color: #ddcbcb;
 }
 
 .btn {
@@ -26,5 +47,11 @@ h1 {
   width: 100%;
   text-align: center;
   padding: 2%;
-  background: #943131;
+  background: #383c44;
+}
+
+@media (max-width: 520px) {
+  .list-group {
+    margin: 0% 10%;
+  }
 }
