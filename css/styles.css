@@ -28,6 +28,7 @@ span{
   border: 0;
   margin-right: 30px;
 }
+
 .list-group {
   display: grid;
   list-style: none;
@@ -60,8 +61,15 @@ img
 
 }
 
-@media (max-width: 520px) {
+@media (max-width: 574px) {
   .list-group {
     margin: 0% 10%;
   }
+  .form-control{
+    margin: 8px ;
+  }
+  #sub{
+    margin-right: 50px;
+  }
+
 }
