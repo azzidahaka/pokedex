@@ -3,6 +3,10 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';//holds link to api
 
+  $('.navbar-brand').on('click', function () {
+    $('html, body').animate({ scrollTop: 0 }, 300);
+  });
+
   /**
    * Function creates a modal that will display pokemon details
    */
@@ -132,6 +136,9 @@ let pokemonRepository = (function () {
         hideLoadingMessage();
       });
   }
+
+
+
   /**
    * Fucntion populates the modal with pokemon details
    */
